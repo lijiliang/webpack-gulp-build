@@ -6,6 +6,7 @@ const gulp = require('gulp');
 const path = require('path');
 const watch = require('gulp-watch');
 const fileinclude = require('gulp-file-include');
+const named = require('vinyl-named');    //该插件保证webpack生成的文件名能够和原文件对上
 
 
 //配置相关文件
@@ -15,6 +16,11 @@ const debugDir = config.path.debug;
 const distDir = config.path.dist;
 const appJsPath = config.appJsPath;
 const htmlViews = config.htmlViews;
+
+
+//webpack 配置文件
+var configDeBug = require('./webpack.dev');
+
 
 // 针对源码，如果以_开头的文件夹或与以_开关的文件都不编译
 const _htmlSrcPath = srcDir+'/html/';
@@ -47,6 +53,7 @@ gulp.task('html:watch',()=>{
     // .pipe(fileinclude('@@'))
     // .pipe(gulp.dest(htmlViews));
 });
+
 
 /* dev 开发环境下编译 */
 gulp.task('dev',['html:build','html:watch'])

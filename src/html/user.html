@@ -1,0 +1,17 @@
+<!DOCTYPE html>
+<html>
+<head>
+    @@include('./_common/header.html', {
+        "title": "user page",
+        "keywords": "这是关键字",
+        "description": "这是描述"
+    })
+    <%-init_css('antd.css,index.css')%>
+</head>
+<body>
+    <section id="index">
+        this is user page
+    @@include("./_common/footer.html")
+    <%-init_js('index.js')%>
+</body>
+</html>

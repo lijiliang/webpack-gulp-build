@@ -1,10 +1,10 @@
 {
-    "path": {
+    "path":{
         "src": "src",
         "debug": "debug",
         "dist": "dist"
     },
-    "appJsPath": "app",
-    "htmlView": "./debug/html",
+    "appJsPath":"app",
+    "htmlViews": "./debug/html",
     "mapPath": "./debug/html/map"
 }

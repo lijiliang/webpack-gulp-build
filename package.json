@@ -1,0 +1,19 @@
+{
+  "name": "webpack-gulp-build",
+  "version": "1.0.0",
+  "description": "基于webpack+gulp的前端构建工具",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/lijiliang/webpack-gulp-build.git"
+  },
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/lijiliang/webpack-gulp-build/issues"
+  },
+  "homepage": "https://github.com/lijiliang/webpack-gulp-build#readme"
+}

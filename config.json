@@ -5,6 +5,6 @@
         "dist": "dist"
     },
     "appJsPath":"app",
-    "htmlViews": "./debug/html",
+    "htmlViews": "./debug/html/",
     "mapPath": "./debug/html/map"
 }

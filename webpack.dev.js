@@ -57,8 +57,8 @@ module.exports = (file)=>{
                 )
             },
             {
-                test: /\.(jpg|png|gif)$/,
-                loader: "url?limit=8192&name=img/[folder]/[name].[ext]" + "!img?minimize&progressive=true&optimizationLevel=5"
+                test: /\.(jpe?g|png|gif)$/i,
+                loader: "file?limit=8192&name=img/[folder]/[name].[ext]" + '!image-webpack?{progress:true, optimizationLevel: 1, interlaced: false, pngquant: {quality: "100", speed: 8}, mozjpeg: {quality: 80}}'
             },
             {
                 test: /\.(eot|svg|ttf|woff)$/,
@@ -103,15 +103,13 @@ module.exports = (file)=>{
             */
             path.resolve('./src/js/vendor')
         ],
-        //别名
+        //配置别名，在项目中可缩减引用路径
         /*
         alias: {
             'react': 'react.js'
         }
         */
-
     }
-
 
     return opt;
 }

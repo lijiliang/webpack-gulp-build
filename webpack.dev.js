@@ -47,6 +47,12 @@ module.exports = (file)=>{
         //各种加载器，即让各种文件格式可用require引用
         //webpack的处理顺序是perLoaders - loaders - postLoaders
         //loaders执行之前处理的操作
+        preLoaders: [
+            {
+                test: /\.jsx?$/,
+                loader: 'jshint-loader'
+            }
+        ],
         loaders: [
             {
                 test: /\.less$/,
@@ -68,7 +74,7 @@ module.exports = (file)=>{
                 test: /\.jsx?$/,
                 loader: "babel",
                 query: {
-                  presets: ['es2015']
+                  presets: ['react','es2015']
                 }
             }
         ],
@@ -109,7 +115,11 @@ module.exports = (file)=>{
             'react': 'react.js'
         }
         */
-    }
+    };
 
+    //配置jshint的选项，支持es6的校验
+    opt.jshint = {
+        'esnext': true
+    }
     return opt;
 }

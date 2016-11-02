@@ -5,6 +5,7 @@
   "main": "index.js",
   "scripts": {
     "dev": "gulp dev --color --profile",
+    "core:dev": "gulp core:dev --color --profile",
     "test": "echo \"Error: no test specified\" && exit 1"
   },
   "repository": {

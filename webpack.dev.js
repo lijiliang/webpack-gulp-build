@@ -4,6 +4,7 @@
  */
 'use strict';
 
+const webpack = require('webpack');
 const path = require('path');
 var ExtractTextPlugin = require('extract-text-webpack-plugin'); //将样式打包成独立的css文件
 const config = require('./config.json');
@@ -28,9 +29,11 @@ module.exports = (file)=>{
         opt.entry =  srcDir + file;   // 多文件入口
         opt.output = {
             filename: 'js/' + _name + '.js',    // 根据入口文件输出的对应多个文件名
-            chunkFilename: 'js/' + _name + '.js'
+            chunkFilename: 'js/' + _name + '.js',
+            //添加要打包在vendors里面的库
+            //vendors: ['react']
         }
-        console.log(srcDir + file)
+        //console.log(srcDir + file)
     }else{
         extractLESS = new ExtractTextPlugin('css/[name].css');
         opt.output = {
@@ -89,7 +92,9 @@ module.exports = (file)=>{
 
     // 插件
     opt.plugins = [
-        extractLESS
+        extractLESS,
+        //把入口文件里面的数组打包成verdords.js
+        //new webpack.optimize.CommonsChunkPlugin('vendors', 'js/'+'vendors.js'),
     ];
 
     //当我们想在项目中require一些其他的类库或者API，而又不想让这些类库的源码被构建到运行时文件中，这在实际开发中很有必要。此时我们就可以通过配置externals参数来解决这个问题：

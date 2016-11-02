@@ -21,7 +21,7 @@ const htmlViews = config.htmlViews;
 
 //webpack 配置文件
 var configDeBug = require('./webpack.dev');
-
+var configCore = require('./webpack.core');
 
 // 针对源码，如果以_开头的文件夹或与以_开关的文件都不编译
 const _htmlSrcPath = srcDir+'/html/';
@@ -42,6 +42,9 @@ const _jsFile = [
     `!${_jsSrcPath}**/_*.js(x)`
 ]
 
+//核心js文件
+const _jsCoreFile = [`${_jsSrcPath}/vender/*.js?(x)`];
+
 /* html编译 */
 gulp.task('html:build', ()=>{
     gulp.src(_htmlFile)
@@ -60,8 +63,6 @@ gulp.task('html:watch',()=>{
             .pipe(gulp.dest(htmlViews));
         console.log(file.path+' complite!');
     })
-    // .pipe(fileinclude('@@'))
-    // .pipe(gulp.dest(htmlViews));
 });
 
 var jsWatchList = new Set();
@@ -82,7 +83,6 @@ gulp.task('js:dev', ()=>{
                     });
             }
         }));
-
         // .pipe(named())
         // .pipe(webpack(configDeBug()))
         // .pipe(gulp.dest(debugDir+'/'))
@@ -91,6 +91,23 @@ gulp.task('js:dev', ()=>{
         // });
 });
 
+gulp.task('core:dev', ()=>{
+    var startTime = (new Date()).getTime();
+    gulp.src(_jsCoreFile)
+        .pipe(named(function(file){
+            var _file = file.relative.replace(/\\/g, '/');
+            _file = _file.replace(/\//, '_');
+            file.named = path.basename(_file,path.extname(_file));
+            this.queue(file);
+        }))
+        .pipe(webpack(configCore()))
+        .pipe(gulp.dest(debugDir + '/'))
+        .on('end', ()=>{
+            var endTime = (new Date()).getTime();
+            console.log('corejs is finished!');
+            console.log(`use time：${(endTime-startTime)/1000} s`);
+        })
+});
 
 /* dev 开发环境下编译 */
 gulp.task('dev',['html:build', 'html:watch', 'js:dev'])

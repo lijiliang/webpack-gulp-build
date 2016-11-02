@@ -14,6 +14,7 @@ var opt = {
         filename: 'js/[name].js'
     },
     module: {
+        // 加载器
         loaders: [
             {
                 test: /\.jsx?$/,
@@ -29,10 +30,29 @@ var opt = {
                loaders: ['es3ify-loader']
              }
         ]
-    }
+    },
+    resolve: {
+      extensions:["",".js",".jsx"]
+    },
+    plugins: []
 }
 
 module.exports = (env)=>{
-
+    // opt.plugins.push(
+    //     new webpack.DefinePlugin({
+    //       'process.env':{
+    //         'NODE_ENV': JSON.stringify('production')
+    //       }
+    //     })
+    // )
+    //
+    // //设置这个可以忽略压缩时产生的警告
+    // opt.plugins.push(
+    //     new webpack.optimize.UglifyJsPlugin({
+    //       compress: {
+    //           warnings: false
+    //       }
+    //     })
+    // )
     return opt;
 }

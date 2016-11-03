@@ -1,5 +1,5 @@
 /**
- * [webpack 生成核心文件]
+ * [webpack 构建核心文件]
  * created by LJL
  */
 `use strict`;
@@ -46,7 +46,7 @@ module.exports = (env)=>{
     //     })
     // )
     //
-    // //设置这个可以忽略压缩时产生的警告
+    // //设置这个可以忽略压缩时产生的警告``
     // opt.plugins.push(
     //     new webpack.optimize.UglifyJsPlugin({
     //       compress: {

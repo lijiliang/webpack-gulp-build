@@ -91,6 +91,10 @@ gulp.task('js:dev', ()=>{
         // });
 });
 
+/* dev 开发环境下编译 */
+gulp.task('dev',['html:build', 'html:watch', 'js:dev'])
+
+/* 构建开发环境的核心文件 */
 gulp.task('core:dev', ()=>{
     var startTime = (new Date()).getTime();
     gulp.src(_jsCoreFile)
@@ -106,8 +110,24 @@ gulp.task('core:dev', ()=>{
             var endTime = (new Date()).getTime();
             console.log('corejs is finished!');
             console.log(`use time：${(endTime-startTime)/1000} s`);
-        })
+        });
 });
 
-/* dev 开发环境下编译 */
-gulp.task('dev',['html:build', 'html:watch', 'js:dev'])
+/* 构建正式环境的核心文件 */
+gulp.task('core:build', ()=>{
+    var startTime = (new Date()).getTime();
+    gulp.src(_jsCoreFile)
+        .pipe(named(function(file){
+            var _file = file.relative.replace(/\\/g, '/');
+            _file = _file.replace(/\//, '_');
+            file.named = path.basename(_file, path.extname(_file));
+            this.queue(file);
+        }))
+        .pipe(webpack(configCore('www')))
+        .pipe(gulp.dest(distDir + '/'))
+        .on('end', ()=>{
+            var endTime = (new Date()).getTime();
+            console.log('corejs is finished!');
+            console.log(`use time: ${(endTime - startTime)/1000} s`)
+        })
+})

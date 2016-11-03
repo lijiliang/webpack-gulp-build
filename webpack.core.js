@@ -38,21 +38,24 @@ var opt = {
 }
 
 module.exports = (env)=>{
-    // opt.plugins.push(
-    //     new webpack.DefinePlugin({
-    //       'process.env':{
-    //         'NODE_ENV': JSON.stringify('production')
-    //       }
-    //     })
-    // )
-    //
-    // //设置这个可以忽略压缩时产生的警告``
-    // opt.plugins.push(
-    //     new webpack.optimize.UglifyJsPlugin({
-    //       compress: {
-    //           warnings: false
-    //       }
-    //     })
-    // )
+    if(env === 'www'){
+        // Webpack 提供了设置环境变量来优化代码的方案,明显构建出来的体积下降好多
+        opt.plugins.push(
+            new webpack.DefinePlugin({
+                'process.env': {
+                    NODE_ENV: JSON.stringify('production')
+                }
+            })
+        )
+        // 压缩js代码
+        opt.plugins.push(
+            new webpack.optimize.UglifyJsPlugin({
+                compress: {
+                    warnings: false   // 忽略压缩时产生的警告
+                }
+            })
+        )
+    }
+
     return opt;
 }

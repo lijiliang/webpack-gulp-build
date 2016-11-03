@@ -22,6 +22,7 @@ const htmlViews = config.htmlViews;
 //webpack 配置文件
 var configDeBug = require('./webpack.dev');
 var configCore = require('./webpack.core');
+var configPro = require('./webpack.config');
 
 // 针对源码，如果以_开头的文件夹或与以_开关的文件都不编译
 const _htmlSrcPath = srcDir+'/html/';
@@ -93,6 +94,25 @@ gulp.task('js:dev', ()=>{
 
 /* dev 开发环境下编译 */
 gulp.task('dev',['html:build', 'html:watch', 'js:dev'])
+
+/* 生产环境编译 */
+gulp.task('build',['html:build'], ()=>{
+    var startTime = (new Date()).getTime();
+    gulp.src(_jsFile)
+        .pipe(named(function(file){
+            var _file = file.relative.replace(/\\/g, '/');
+            _file = _file.replace(/\//, '_');
+            file.named = path.basename(_file,path.extname(_file));
+            this.queue(file);
+        }))
+        .pipe(webpack(configPro))
+        .pipe(gulp.dest(distDir + '/'))
+        .on('end', ()=>{
+            var endTime = (new Date()).getTime();
+            console.log('js js finished!');
+            console.log(`use time: ${(endTime - startTime)/1000} s`);
+        });
+});
 
 /* 构建开发环境的核心文件 */
 gulp.task('core:dev', ()=>{

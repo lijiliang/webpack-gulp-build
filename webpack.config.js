@@ -30,6 +30,10 @@ module.exports = {
     },
     module: {
         loaders: [
+            // {
+            //     test: /\.html$/,
+            //     loader: 'md5Util?static=dist'
+            // },
             {
                 test: /\.less$/,
                 loader: extractLESS.extract(

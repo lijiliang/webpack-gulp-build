@@ -1,3 +1,4 @@
+// import '../../html/index.html';
 //import './a';
 import "./_jsx/common.less";
 import "../../img/user/user.png";

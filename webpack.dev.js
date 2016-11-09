@@ -57,6 +57,10 @@ module.exports = (file)=>{
             }
         ],
         loaders: [
+            // {
+            //     test: /\.html$/,
+            //     loader: 'md5Util?static=debug'
+            // },
             {
                 test: /\.less$/,
                 loader: extractLESS.extract(

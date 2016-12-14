@@ -19,8 +19,8 @@
 
 ### 安装
 ```shell
-$ git clone git@github.com:xxx-fe/xxx-builder.git
-$ cd xxx-builder
+$ git clone https://github.com/lijiliang/webpack-gulp-build.git
+$ cd webpack-gulp-build
 $ npm install
 $ npm i gulp -g
 ```

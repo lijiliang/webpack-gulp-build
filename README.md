@@ -83,6 +83,7 @@ npm run build
 └─webpack.dev.js    //开发模式配置
 ```
 ## 技术栈
+- [x] [gulp](http://gulpjs.com/)
 - [x] [Webpack](https://webpack.github.io)
 - [x] [React](https://facebook.github.io/react/)
 - [x] [ES6](http://es6.ruanyifeng.com/)

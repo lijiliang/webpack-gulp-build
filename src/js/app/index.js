@@ -1,4 +1,6 @@
-import '../../html/index.html';
+/**
+ * 测试es6语法
+ */
 //import './a';
 import "./_jsx/common.less";
 import "../../img/user/user.png";
